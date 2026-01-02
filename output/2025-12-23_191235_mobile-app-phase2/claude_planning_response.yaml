@@ -1,0 +1,118 @@
+"task_name: mobile-app-phase2-core-features\nobjective: Implement core user-facing\
+  \ features including navigation, feed, post creation, profiles, and connections\
+  \ for TrustLink AI Guardian mobile app\nrequirements:\n  - Implement React Navigation\
+  \ with bottom tab navigator for 5 main tabs (Feed, Network, Messages, Notifications,\
+  \ Profile)\n  - Create stack navigators for detail views and authentication flow\n\
+  \  - Build infinite-scroll feed screen displaying posts from Supabase with AI moderation\
+  \ badges\n  - Implement post creation with camera integration, image upload to Supabase\
+  \ Storage, and text formatting\n  - Create user profile screens showing posts, connections,\
+  \ trust scores, and AI metrics\n  - Build connections management with request sending,\
+  \ accept/reject functionality, and trust score visualization\n  - Develop reusable\
+  \ UI component library (Button, Card, Input, Avatar, Badge) using React Native Paper\n\
+  \  - Add pull-to-refresh, optimistic updates, and loading skeletons for better UX\n\
+  \  - Support offline-first functionality where applicable\n  - Ensure accessibility\
+  \ compliance (labels, roles, touch targets)\n  - Maintain 60fps scrolling performance\
+  \ and <1s navigation transitions\nfiles_to_modify:\n  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/app.json\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/package.json\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/App.tsx\n\
+  new_files:\n  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/navigation/index.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/navigation/TabNavigator.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/navigation/AuthNavigator.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/navigation/types.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/ui/Button.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/ui/Card.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/ui/Input.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/ui/Avatar.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/ui/Badge.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/ui/LoadingSkeleton.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/PostCard.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/PostComposer.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/ConnectionCard.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/components/TrustScoreBadge.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/screens/FeedScreen.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/screens/NetworkScreen.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/screens/MessagesScreen.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/screens/NotificationsScreen.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/screens/ProfileScreen.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/screens/EditProfileScreen.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/screens/PostDetailScreen.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/screens/auth/LoginScreen.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/screens/auth/SignupScreen.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/hooks/usePosts.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/hooks/useConnections.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/hooks/useProfile.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/hooks/useImagePicker.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/hooks/useCamera.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/services/storage.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/services/posts.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/services/connections.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/utils/imageCompression.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/utils/optimisticUpdates.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/types/navigation.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/types/post.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/src/types/connection.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/__tests__/hooks/usePosts.test.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/__tests__/hooks/useConnections.test.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/__tests__/components/Button.test.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/__tests__/components/PostCard.test.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/__tests__/integration/postCreation.test.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/trustlink-mobile/__tests__/integration/connectionRequest.test.tsx\n\
+  implementation_steps:\n  - Step 1: Install required dependencies (@react-navigation/native,\
+  \ @react-navigation/bottom-tabs, @react-navigation/native-stack, expo-image-picker,\
+  \ expo-camera, react-native-paper, @tanstack/react-query)\n  - Step 2: Create TypeScript\
+  \ type definitions for navigation, posts, and connections in src/types/\n  - Step\
+  \ 3: Build reusable UI component library (Button, Card, Input, Avatar, Badge, LoadingSkeleton)\
+  \ in src/components/ui/ using React Native Paper with theme integration\n  - Step\
+  \ 4: Set up React Navigation structure with TabNavigator (5 tabs), AuthNavigator\
+  \ (login/signup), and stack navigators for detail views in src/navigation/\n  -\
+  \ Step 5: Implement storage service for Supabase Storage integration with image\
+  \ upload, compression, and progress tracking in src/services/storage.ts\n  - Step\
+  \ 6: Create posts service with CRUD operations and AI moderation data fetching in\
+  \ src/services/posts.ts\n  - Step 7: Create connections service with request sending,\
+  \ accepting/rejecting, and trust score retrieval in src/services/connections.ts\n\
+  \  - Step 8: Build custom hooks (usePosts, useConnections, useProfile, useImagePicker,\
+  \ useCamera) with TanStack Query for data fetching and caching\n  - Step 9: Implement\
+  \ FeedScreen with infinite scroll FlatList, pull-to-refresh, loading skeletons,\
+  \ and optimistic updates\n  - Step 10: Create PostCard component displaying post\
+  \ content, author, AI badges, interactions (likes, comments), and trust scores\n\
+  \  - Step 11: Build PostComposer modal with text input, camera integration, image\
+  \ picker, upload progress, and image compression\n  - Step 12: Implement ProfileScreen\
+  \ showing user info, stats, posts grid, connections count, and AI metrics with edit\
+  \ functionality\n  - Step 13: Create EditProfileScreen with form inputs, profile\
+  \ picture upload, and bio editing\n  - Step 14: Build NetworkScreen displaying connections\
+  \ list with ConnectionCard components showing trust scores and mutual connections\n\
+  \  - Step 15: Implement connection request UI with accept/reject buttons and pending\
+  \ requests section\n  - Step 16: Create TrustScoreBadge component with color-coded\
+  \ visualization based on score ranges\n  - Step 17: Build placeholder screens for\
+  \ Messages and Notifications tabs\n  - Step 18: Implement auth screens (LoginScreen,\
+  \ SignupScreen) with form validation and biometric integration\n  - Step 19: Add\
+  \ protected route logic to navigation that redirects unauthenticated users to auth\
+  \ flow\n  - Step 20: Optimize performance with React.memo, useMemo, useCallback\
+  \ for FlatList items and expensive computations\n  - Step 21: Add accessibility\
+  \ labels, roles, and minimum touch targets (44x44) to all interactive elements\n\
+  \  - Step 22: Implement error handling and offline support with TanStack Query retry\
+  \ logic and cache persistence\n  - Step 23: Update App.tsx to use new navigation\
+  \ structure instead of placeholder screens\ntesting_requirements:\n  - Unit test\
+  \ usePosts hook for fetching, pagination, optimistic updates, and error handling\n\
+  \  - Unit test useConnections hook for fetching connections, sending requests, and\
+  \ accepting/rejecting\n  - Component test Button UI component for different variants,\
+  \ disabled states, and onPress callbacks\n  - Component test PostCard for rendering\
+  \ post data, AI badges, and interaction buttons\n  - Integration test for complete\
+  \ post creation flow (camera permission, image selection, compression, upload, post\
+  \ creation)\n  - Integration test for connection request flow (sending request,\
+  \ viewing pending, accepting/rejecting)\n  - Test navigation between all tabs and\
+  \ screens\n  - Test camera permissions handling and image upload with progress tracking\n\
+  \  - Test FlatList performance with 100+ posts to ensure 60fps scrolling\n  - Test\
+  \ accessibility with screen reader compatibility\n  - Achieve minimum 70% test coverage\
+  \ for new code\nconstraints:\n  - Do NOT modify Phase 1 foundation files (AuthContext.tsx,\
+  \ supabaseClient.ts, theme.ts) except for integration\n  - Follow existing TypeScript\
+  \ strict typing from Phase 1\n  - Use existing Supabase schema from web app - do\
+  \ NOT create new tables or modify database structure\n  - Keep bundle size under\
+  \ 50MB by optimizing images and lazy loading screens\n  - Maintain React Native\
+  \ performance best practices (FlatList with getItemLayout, windowSize optimization,\
+  \ removeClippedSubviews)\n  - Follow repository code style (100-char line length,\
+  \ snake_case files, PascalCase components)\n  - Use TanStack Query for all data\
+  \ fetching - do NOT use Redux or other state management\n  - Support both iOS and\
+  \ Android without platform-specific code unless absolutely necessary\n  - Ensure\
+  \ all images uploaded are compressed to <1MB before upload\n  - Do NOT add new dependencies\
+  \ beyond those listed in Step 1 without justification"

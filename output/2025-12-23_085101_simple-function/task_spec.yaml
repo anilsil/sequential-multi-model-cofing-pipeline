@@ -1,0 +1,35 @@
+"task_name: email-validation-utility\nobjective: Create a utility function to validate\
+  \ email addresses using regex with comprehensive test coverage\nrequirements:\n\
+  \  - Function named `validate_email` that accepts a string and returns boolean\n\
+  \  - Email validation using Python regex (re module from standard library)\n  -\
+  \ Handle edge cases including empty strings, None values, and malformed formats\n\
+  \  - Function should validate standard RFC-compliant email formats\n  - Include\
+  \ type hints for function signature\n  - Add Google-style docstring with examples\n\
+  \  - Comprehensive pytest test suite with 100% coverage of edge cases\nfiles_to_modify:\n\
+  \  - agentic_code/utils.py\nnew_files:\n  - tests/test_email_validation.py\nimplementation_steps:\n\
+  \  - Step 1: Add `validate_email(email: str | None) -> bool` function to `agentic_code/utils.py`\
+  \ below existing utility functions\n  - Step 2: Implement regex pattern for email\
+  \ validation (support standard formats like user@domain.com, name.last@domain.co.uk)\n\
+  \  - Step 3: Add None and empty string checks before regex validation\n  - Step\
+  \ 4: Add comprehensive docstring with parameter description, return value, and usage\
+  \ examples\n  - Step 5: Create `tests/test_email_validation.py` with pytest test\
+  \ class\n  - Step 6: Add test cases for valid emails (simple, with dots, with hyphens,\
+  \ various TLDs)\n  - Step 7: Add test cases for invalid emails (missing @, missing\
+  \ domain, missing local part, invalid characters)\n  - Step 8: Add test cases for\
+  \ edge cases (None, empty string, whitespace-only, very long emails >254 chars)\n\
+  \  - Step 9: Run pytest to verify all tests pass\ntesting_requirements:\n  - Test\
+  \ valid formats: user@example.com, name.last@domain.co.uk, user+tag@example.com,\
+  \ user123@sub.domain.com\n  - Test invalid formats: @example.com, user@, no-at-sign.com,\
+  \ user@domain, user@@domain.com\n  - Test edge cases: None, empty string \"\", whitespace\
+  \ \"  \", extremely long email (>254 chars)\n  - Verify function returns True for\
+  \ all valid cases\n  - Verify function returns False for all invalid and edge cases\n\
+  \  - Achieve 100% code coverage for the validate_email function\nconstraints:\n\
+  \  - Do NOT add external dependencies (use only Python standard library `re` module)\n\
+  \  - Follow existing code style in utils.py (Black formatting, 100 char line length)\n\
+  \  - Use pathlib.Path pattern if file path handling is needed (not applicable here)\n\
+  \  - Add type hints matching existing utils.py patterns (use `str | None` for optional\
+  \ strings)\n  - Place function logically in utils.py near other validation/helper\
+  \ functions\n  - Do NOT modify existing functions in utils.py\n  - Follow pytest\
+  \ naming conventions (test_*.py file, test_* functions)\n  - Use descriptive test\
+  \ function names (test_validate_email_valid_simple_format, test_validate_email_none_input,\
+  \ etc)"

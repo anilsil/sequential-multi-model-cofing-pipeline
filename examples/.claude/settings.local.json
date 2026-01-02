@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(agentic-code run:*)",
+      "Bash(python scripts/fully_automated.py:*)",
+      "Bash(python scripts/fully_automated_with_codex.py:*)",
+      "Bash(python:*)",
+      "Bash(timeout 120 python:*)",
+      "Bash(claude chat:*)"
+    ]
+  }
+}

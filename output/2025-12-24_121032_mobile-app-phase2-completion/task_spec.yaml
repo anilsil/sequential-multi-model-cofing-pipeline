@@ -1,0 +1,88 @@
+"task_name: trustlink-mobile-phase2-completion\nobjective: Complete remaining 30%\
+  \ of Phase 2 by implementing core screens, components, and hooks for TrustLink mobile\
+  \ app\nrequirements:\n  - Implement FeedScreen with infinite scroll using existing\
+  \ usePosts hook\n  - Create PostCard component displaying post content, author info,\
+  \ AI scores, and trust indicators\n  - Build CreatePostScreen with image upload\
+  \ functionality using expo-image-picker and expo-camera\n  - Implement ProfileScreen\
+  \ showing user info, stats, AI metrics, and posts list\n  - Create EditProfileScreen\
+  \ with form validation and avatar upload\n  - Build ConnectionsScreen with tab switching\
+  \ for connections and requests\n  - Create ConnectionCard component with trust score\
+  \ display and action buttons\n  - Implement OnboardingScreen with multi-step form\
+  \ and progress indicator\n  - Create placeholder screens for Network, Messages,\
+  \ and Notifications\n  - Build useProfile hook for fetching user profiles from Supabase\n\
+  \  - Build useUpdateProfile mutation hook with avatar upload to Supabase Storage\n\
+  \  - Build useConnections hook for fetching connections with status filtering\n\
+  \  - Build useImageUpload utility hook for compression and upload to Supabase Storage\n\
+  \  - All implementations must use existing UI components from Phase 2 foundation\n\
+  \  - Maintain TypeScript strict typing throughout\n  - Implement optimistic UI updates\
+  \ for mutations\n  - Support both iOS and Android platforms\n  - Include proper\
+  \ accessibility labels and minimum 44pt touch targets\n  - Handle loading states,\
+  \ error states, and empty states consistently\nfiles_to_modify:\n  - mobile/package.json\n\
+  new_files:\n  - mobile/src/screens/FeedScreen.tsx\n  - mobile/src/screens/CreatePostScreen.tsx\n\
+  \  - mobile/src/screens/ProfileScreen.tsx\n  - mobile/src/screens/EditProfileScreen.tsx\n\
+  \  - mobile/src/screens/ConnectionsScreen.tsx\n  - mobile/src/screens/OnboardingScreen.tsx\n\
+  \  - mobile/src/screens/NetworkScreen.tsx\n  - mobile/src/screens/MessagesScreen.tsx\n\
+  \  - mobile/src/screens/NotificationsScreen.tsx\n  - mobile/src/components/PostCard.tsx\n\
+  \  - mobile/src/components/ConnectionCard.tsx\n  - mobile/src/hooks/useProfile.tsx\n\
+  \  - mobile/src/hooks/useUpdateProfile.tsx\n  - mobile/src/hooks/useConnections.tsx\n\
+  \  - mobile/src/hooks/useImageUpload.tsx\nimplementation_steps:\n  - Step 1: Add\
+  \ new dependencies to package.json (expo-camera, expo-image-picker, expo-image-manipulator\
+  \ if not present)\n  - Step 2: Create useProfile hook querying Supabase profiles\
+  \ table by userId with TanStack Query\n  - Step 3: Create useConnections hook querying\
+  \ Supabase connections table with status filtering\n  - Step 4: Create useImageUpload\
+  \ hook with compression logic and Supabase Storage upload functionality\n  - Step\
+  \ 5: Create useUpdateProfile mutation hook with avatar upload integration\n  - Step\
+  \ 6: Implement PostCard component with all UI elements (avatar, content, images,\
+  \ AI badges, trust score, action buttons)\n  - Step 7: Integrate useLikePost hook\
+  \ in PostCard for optimistic like updates\n  - Step 8: Implement ConnectionCard\
+  \ component with trust score display and conditional action buttons\n  - Step 9:\
+  \ Create FeedScreen with FlatList, infinite scroll using usePosts onEndReached,\
+  \ RefreshControl, and floating action button\n  - Step 10: Build CreatePostScreen\
+  \ with multiline Input, image picker integration, preview, useCreatePost submission\n\
+  \  - Step 11: Implement ProfileScreen with conditional rendering for current user\
+  \ vs other users, stats display, posts FlatList\n  - Step 12: Create EditProfileScreen\
+  \ with form inputs for all profile fields and avatar picker\n  - Step 13: Build\
+  \ ConnectionsScreen with tab switching between My Connections and Requests using\
+  \ React Navigation Material Top Tabs or custom tabs\n  - Step 14: Implement OnboardingScreen\
+  \ with multi-step form flow and progress indicator\n  - Step 15: Create placeholder\
+  \ screens for NetworkScreen, MessagesScreen, NotificationsScreen with basic structure\n\
+  \  - Step 16: Test all screens integrate correctly with existing TabNavigator and\
+  \ navigation types\n  - Step 17: Verify all components use existing UI library components\
+  \ (Button, Card, Avatar, Badge, Input, LoadingSpinner, EmptyState)\n  - Step 18:\
+  \ Test image upload flow end-to-end on both iOS and Android\n  - Step 19: Verify\
+  \ optimistic updates work correctly for likes and post creation\n  - Step 20: Test\
+  \ accessibility with screen reader and verify touch target sizes\ntesting_requirements:\n\
+  \  - Verify FeedScreen renders posts using usePosts hook and displays loading/empty\
+  \ states correctly\n  - Test infinite scroll triggers data fetching when scrolling\
+  \ near end of list\n  - Verify pull-to-refresh refetches posts data\n  - Test PostCard\
+  \ displays all post properties correctly including AI scores and trust indicators\n\
+  \  - Verify like button triggers optimistic update and calls useLikePost hook\n\
+  \  - Test CreatePostScreen image picker opens camera and gallery on respective actions\n\
+  \  - Verify CreatePostScreen validates non-empty content before submission\n  -\
+  \ Test post creation navigates back to feed and new post appears at top\n  - Verify\
+  \ ProfileScreen displays correct data for current user and other users\n  - Test\
+  \ ProfileScreen shows edit button only for current user\n  - Verify EditProfileScreen\
+  \ saves changes and updates profile data\n  - Test ConnectionsScreen displays connections\
+  \ from useConnections hook\n  - Verify ConnectionCard shows correct trust score\
+  \ colors (green high, yellow medium, red low)\n  - Test OnboardingScreen navigates\
+  \ through all steps and submits on final step\n  - Verify all placeholder screens\
+  \ render without errors\n  - Test navigation between all screens works correctly\n\
+  \  - Verify TypeScript compilation succeeds with no errors\n  - Test on both iOS\
+  \ and Android platforms for platform-specific issues\n  - Verify all interactive\
+  \ elements have minimum 44pt touch targets\n  - Test with VoiceOver (iOS) and TalkBack\
+  \ (Android) screen readers\nconstraints:\n  - Do NOT modify existing navigation\
+  \ setup from Phase 2 foundation (RootNavigator, TabNavigator, AuthNavigator)\n \
+  \ - Do NOT modify existing UI components in src/components/ui directory\n  - Do\
+  \ NOT modify existing hooks (usePosts, useLikePost, useCreatePost)\n  - Do NOT change\
+  \ navigation types or add new navigation stacks\n  - Follow existing TypeScript\
+  \ patterns and type definitions from Phase 2\n  - Use pathlib.Path patterns from\
+  \ Python codebase do NOT apply here - use standard TypeScript file paths\n  - Do\
+  \ NOT introduce new state management libraries beyond TanStack Query and React Context\n\
+  \  - Follow React Native best practices for FlatList optimization (keyExtractor,\
+  \ getItemLayout if possible)\n  - Use existing Supabase client configuration from\
+  \ src/services/supabase.ts\n  - Use existing AuthContext for current user access\n\
+  \  - Follow existing code style matching Phase 2 foundation files\n  - Maintain\
+  \ consistent error handling patterns across all hooks\n  - Do NOT implement real-time\
+  \ features (messaging, notifications) - use placeholders only\n  - Keep image uploads\
+  \ under 1MB after compression\n  - Do NOT add analytics or tracking code\n  - Do\
+  \ NOT implement complex animations in this phase"

@@ -1,0 +1,44 @@
+## Repository Analysis
+
+**Primary Language(s)**: TypeScript with React (TSX). The project uses TypeScript with relaxed compiler settings (`noImplicitAny: false`, `strictNullChecks: false`).
+
+**Project Type**: Single-page web application (SPA) built for professional networking with AI-powered content moderation.
+
+**Key Frameworks**:
+- **Build Tool**: Vite 5 with React SWC plugin
+- **Frontend**: React 18 with React Router v6 for navigation
+- **Backend**: Supabase (PostgreSQL with auto-generated types)
+- **State Management**: TanStack Query v5 for server state, React Context for auth
+- **UI Library**: shadcn-ui (Radix UI primitives) with Tailwind CSS
+- **Additional**: D3-force for network visualization, React Hook Form + Zod for validation
+
+**Code Organization**: Clean separation following feature-based architecture:
+- `src/components/` - Feature and UI components (shadcn-ui in `ui/` subfolder)
+- `src/pages/` - Route-level components
+- `src/hooks/` - Custom React hooks (auth, data fetching)
+- `src/integrations/supabase/` - Backend integration layer
+- `src/types/` - TypeScript type definitions
+- `src/lib/` - Utility functions
+
+**Testing Approach**: No testing framework currently implemented. No test files exist in the source directory.
+
+**Notable Patterns**:
+- **Custom Hooks Pattern**: All data fetching encapsulated in domain-specific hooks using TanStack Query
+- **Protected Routes**: `ProtectedRoute` component wraps authenticated routes with auth checks
+- **Path Aliases**: `@/*` maps to `src/*` for cleaner imports
+- **Context-based Auth**: `AuthProvider` with `useAuth` hook for global auth state
+- **Component Composition**: shadcn-ui pattern with Radix UI primitives
+
+**Dependencies**:
+- 40+ Radix UI packages for accessible component primitives
+- Supabase for auth and database
+- TanStack Query for data fetching/caching
+- Lucide React for icons
+- date-fns, recharts for data visualization
+- next-themes for dark mode support
+
+**Code Style**:
+- **Naming**: PascalCase for components, camelCase for functions/variables
+- **Styling**: Tailwind CSS with `cn()` utility (clsx + tailwind-merge) for conditional classes
+- **File Extensions**: `.tsx` for components, `.ts` for utilities
+- **Import Pattern**: Barrel exports with path aliases (`@/components/ui`)

@@ -1,0 +1,47 @@
+Now I have enough context to provide a comprehensive repository analysis.
+
+---
+
+## Repository Analysis
+
+**Primary Language(s)**: Python 3.11+ (100% of codebase)
+
+**Project Type**: CLI tool - A prompt orchestrator for governed multi-agent coding workflows
+
+**Key Frameworks**: 
+- **Typer** (CLI interface with type-safe argument parsing)
+- **Rich** (terminal formatting with colors, panels, tables)
+- **Pydantic v2** (configuration validation using BaseModel)
+- **PyYAML** (YAML/JSON task specification parsing)
+- **Anthropic & Google GenerativeAI SDKs** (for optional automated mode)
+
+**Code Organization**: 
+- `agentic_code/` - Main package with flat structure
+  - `cli.py` - Typer CLI entry point
+  - `pipeline.py` - Manual prompt orchestration
+  - `automated_pipeline.py` - Automated API-based pipeline
+  - `config.py` - Pydantic configuration models
+  - `utils.py` - File I/O, formatting, user confirmation helpers
+  - `agents/` - Specialized agent modules (claude.py, codex.py, gemini.py)
+- `examples/` - Task specification examples (.md, .yaml, .json formats)
+- `output/` - Timestamped run directories with complete artifact trails
+- `scripts/` - Automation scripts (fully_automated.py)
+
+**Testing Approach**: pytest framework (configured in pyproject.toml dev dependencies). Tests appear in generated code output directories rather than a dedicated tests/ folder.
+
+**Notable Patterns**:
+- **Separation of Duties**: Claude plans/decides, Codex implements, Gemini verifies (no agent reviews its own work)
+- **Human-in-the-Loop**: Every stage requires explicit user confirmation before proceeding
+- **Artifact Preservation**: All prompts and responses saved as plain text (Markdown/YAML/JSON) in timestamped directories
+- **Prompt Template Pattern**: Hardcoded module-level constants with `.format()` placeholders
+- **Dual-Mode Architecture**: Prompt-based (free) vs Automated (API calls with human review)
+
+**Dependencies**: Minimal by design - typer, rich, pyyaml, pydantic. API SDKs (anthropic, google-generativeai) only used in automated mode.
+
+**Code Style**: 
+- Black formatting (100-char line length)
+- Modern Python 3.11+ type hints (`list[str]`, not `List[str]`)
+- `pathlib.Path` objects (never string concatenation)
+- Rich console output (`console.print()` with color tags like `[cyan]text[/cyan]`)
+- f-strings or `.format()` (no `%` formatting)
+- Snake_case naming throughout

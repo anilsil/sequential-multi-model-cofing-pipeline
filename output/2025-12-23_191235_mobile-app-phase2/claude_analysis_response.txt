@@ -1,0 +1,48 @@
+Based on my analysis of the repository, here's a comprehensive overview:
+
+---
+
+## Repository Analysis
+
+**1. Primary Language(s)**: Python 3.11+ (exclusively)
+
+**2. Project Type**: CLI tool - a prompt orchestrator for governed multi-agent coding workflows
+
+**3. Key Frameworks**:
+- **Typer** (CLI framework with type safety)
+- **Rich** (terminal formatting, colors, tables, panels)
+- **Pydantic v2** (configuration validation)
+- **PyYAML** (task spec parsing)
+- **Anthropic SDK** and **Google Generative AI** (for automated mode)
+
+**4. Code Organization**:
+```
+agentic_code/
+├── cli.py              # Typer CLI entry point
+├── pipeline.py         # Manual prompt-based orchestration
+├── automated_pipeline.py  # API-based orchestration
+├── config.py           # Pydantic Config model
+├── utils.py            # Rich formatting, file I/O helpers
+└── agents/
+    ├── claude.py       # Repo analysis, planning, decisions
+    ├── codex.py        # Implementation prompts
+    └── gemini.py       # Verification prompts
+```
+
+**5. Testing Approach**: pytest (dev dependency), but no test files exist in the main codebase. Test files only appear in `output/*/generated_code/` directories from pipeline runs.
+
+**6. Notable Patterns**:
+- **Separation of duties**: Different agents for plan/implement/verify/decide
+- **Human-in-the-loop**: All stages require user confirmation
+- **Artifact preservation**: Timestamped output directories with complete audit trails
+- **Dual-mode operation**: Prompt-based (manual) vs automated (API)
+
+**7. Dependencies**: Minimal dependencies - typer, rich, pyyaml, pydantic, anthropic, google-generativeai. Dev tools: pytest, black, ruff, mypy.
+
+**8. Code Style**:
+- Line length: 100 characters (Black/Ruff configured)
+- Naming: snake_case for functions/variables, PascalCase for classes
+- Type hints: Used but lenient (`disallow_untyped_defs = false`)
+- Path handling: Always `pathlib.Path` objects
+- Console output: Rich formatting with `[cyan]tags[/cyan]`
+- Docstrings: Google-style with Args/Returns sections

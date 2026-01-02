@@ -1,0 +1,136 @@
+"task_name: mobile-app-phase2-core-features\nobjective: Implement core mobile app\
+  \ features including navigation, feed with posts, post creation with camera, user\
+  \ profiles, and connections management\nrequirements:\n  - Implement React Navigation\
+  \ with bottom tab and stack navigators\n  - Create Feed screen with infinite scroll\
+  \ FlatList pulling posts from Supabase\n  - Add post creation modal with camera\
+  \ capture and gallery selection using expo-camera and expo-image-picker\n  - Build\
+  \ user profile screen displaying posts, connections, AI trust scores, and moderation\
+  \ metrics\n  - Implement connections management with request sending, accepting,\
+  \ and rejecting\n  - Create reusable UI component library with Button, Card, Input,\
+  \ Avatar, Badge components\n  - Add pull-to-refresh and optimistic updates for better\
+  \ UX\n  - Upload images to Supabase Storage with compression and progress indicators\n\
+  \  - Display AI moderation badges on posts\n  - Show trust score visualizations\
+  \ with colors and badges\n  - Support offline-first where applicable\n  - Maintain\
+  \ TypeScript strict typing throughout\n  - Ensure accessibility with proper labels,\
+  \ roles, and touch targets\n  - Achieve 60fps scrolling and sub-1s navigation transitions\n\
+  \nfiles_to_modify:\n  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/package.json\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/_layout.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/tsconfig.json\n\
+  \nnew_files:\n  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/(tabs)/_layout.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/(tabs)/feed.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/(tabs)/network.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/(tabs)/messages.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/(tabs)/notifications.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/(tabs)/profile.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/post/create.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/post/[id].tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/profile/[userId].tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/app/profile/edit.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/ui/Button.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/ui/Card.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/ui/Input.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/ui/Avatar.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/ui/Badge.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/ui/LoadingSkeleton.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/feed/PostCard.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/feed/PostList.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/feed/AIModerationBadge.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/post/PostComposer.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/post/ImagePicker.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/profile/ProfileHeader.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/profile/ProfileStats.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/profile/TrustScoreDisplay.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/connections/ConnectionCard.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/connections/ConnectionList.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/components/connections/ConnectionRequest.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/hooks/usePosts.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/hooks/useConnections.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/hooks/useProfile.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/hooks/useImageUpload.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/hooks/useInfiniteScroll.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/services/posts.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/services/connections.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/services/profiles.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/services/storage.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/utils/imageCompression.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/utils/trustScoreColors.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/types/post.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/types/connection.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/types/profile.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/__tests__/hooks/usePosts.test.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/__tests__/hooks/useConnections.test.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/__tests__/components/PostCard.test.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/__tests__/components/Button.test.tsx\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/__tests__/integration/postCreation.test.ts\n\
+  \  - /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/__tests__/integration/connectionRequest.test.ts\n\
+  \nimplementation_steps:\n  - Step 1: Install required dependencies - @react-navigation/native,\
+  \ @react-navigation/bottom-tabs, @react-navigation/native-stack, react-native-paper,\
+  \ expo-camera, expo-image-picker, expo-image-manipulator, react-native-safe-area-context,\
+  \ react-native-screens\n  - Step 2: Create TypeScript types for Post, Connection,\
+  \ and Profile in types/ directory matching Supabase schema from web app\n  - Step\
+  \ 3: Build reusable UI component library - Button, Card, Input, Avatar, Badge, LoadingSkeleton\
+  \ with theme integration and accessibility support\n  - Step 4: Implement React\
+  \ Navigation structure with bottom tabs layout in app/(tabs)/_layout.tsx using Expo\
+  \ Router file-based routing\n  - Step 5: Create Supabase service modules for posts.ts,\
+  \ connections.ts, profiles.ts, storage.ts with proper error handling\n  - Step 6:\
+  \ Implement usePosts hook with infinite scroll, pull-to-refresh, and optimistic\
+  \ updates using React Query or SWR\n  - Step 7: Build PostCard component displaying\
+  \ post content, author info, AI moderation badges, and interaction buttons\n  -\
+  \ Step 8: Create Feed screen with FlatList, infinite scroll, loading skeletons,\
+  \ and pull-to-refresh functionality\n  - Step 9: Implement useImageUpload hook with\
+  \ compression using expo-image-manipulator and Supabase Storage upload with progress\n\
+  \  - Step 10: Build PostComposer component with text input, camera/gallery integration,\
+  \ image preview, and upload progress\n  - Step 11: Create post creation screen/modal\
+  \ at app/post/create.tsx with form validation and error handling\n  - Step 12: Implement\
+  \ useProfile and useConnections hooks for fetching and mutating user data\n  - Step\
+  \ 13: Build ProfileHeader, ProfileStats, and TrustScoreDisplay components with color-coded\
+  \ trust score visualization\n  - Step 14: Create profile screen at app/(tabs)/profile.tsx\
+  \ showing user's own profile with posts, connections, and stats\n  - Step 15: Implement\
+  \ profile detail screen at app/profile/[userId].tsx for viewing other users' profiles\n\
+  \  - Step 16: Build profile editing screen at app/profile/edit.tsx with image upload\
+  \ and form fields\n  - Step 17: Create ConnectionCard, ConnectionList, and ConnectionRequest\
+  \ components for connections UI\n  - Step 18: Implement network screen at app/(tabs)/network.tsx\
+  \ showing connections list with trust scores and pending requests\n  - Step 19:\
+  \ Add connection request logic to services/connections.ts with accept/reject mutations\n\
+  \  - Step 20: Implement placeholder screens for messages and notifications tabs\
+  \ (basic UI only, no functionality)\n  - Step 21: Add navigation guards in app/_layout.tsx\
+  \ to redirect unauthenticated users to login\n  - Step 22: Write unit tests for\
+  \ usePosts and useConnections hooks using Jest and React Native Testing Library\n\
+  \  - Step 23: Write component tests for Button, PostCard with snapshot testing and\
+  \ interaction testing\n  - Step 24: Create integration tests for post creation flow\
+  \ and connection request flow\n  - Step 25: Test camera permissions, image selection,\
+  \ compression, and upload on both iOS and Android\n  - Step 26: Perform performance\
+  \ testing - measure FlatList scrolling fps, navigation transition times, and bundle\
+  \ size\n  - Step 27: Run accessibility audit using React Native Accessibility tools\
+  \ ensuring all interactive elements have labels\n\ntesting_requirements:\n  - Unit\
+  \ tests for usePosts hook covering loading states, error handling, infinite scroll,\
+  \ and optimistic updates\n  - Unit tests for useConnections hook covering fetching,\
+  \ sending requests, accepting, rejecting\n  - Unit tests for useImageUpload hook\
+  \ covering compression, upload progress, error handling\n  - Component tests for\
+  \ Button with different variants and states\n  - Component tests for PostCard rendering\
+  \ post data, AI badges, interactions\n  - Component tests for ConnectionCard showing\
+  \ trust scores and request actions\n  - Integration test for complete post creation\
+  \ flow from camera capture to Supabase upload\n  - Integration test for connection\
+  \ request flow from sending to accepting on both sides\n  - Test camera and gallery\
+  \ permission requests on iOS and Android\n  - Test image compression reduces file\
+  \ size while maintaining quality\n  - Test FlatList performance with 100+ posts\
+  \ maintaining 60fps\n  - Test navigation transitions complete in under 1 second\n\
+  \  - Test accessibility labels on all touchable elements using axe-rn or similar\
+  \ tool\n  - Test offline-first functionality where applicable using network mocking\n\
+  \  - Achieve minimum 70% test coverage for new code measured by Jest coverage report\n\
+  \nconstraints:\n  - Do NOT modify Phase 1 foundation files except app/_layout.tsx\
+  \ for navigation integration\n  - Do NOT change Supabase schema - use existing tables\
+  \ from web app (profiles, posts, ai_post_analysis, connections, trust_scores)\n\
+  \  - Do NOT add heavy dependencies - keep total bundle size under 50MB\n  - Follow\
+  \ TypeScript strict mode - no any types unless absolutely necessary\n  - Use pathlib-style\
+  \ imports with @ alias configured in tsconfig.json\n  - Follow React Native performance\
+  \ best practices - use React.memo, useMemo, useCallback where appropriate\n  - Use\
+  \ FlatList for all scrollable lists, never ScrollView with .map()\n  - Implement\
+  \ proper cleanup in useEffect hooks to prevent memory leaks\n  - Use React Native\
+  \ Paper components as base for UI library to ensure consistency\n  - Follow accessibility\
+  \ guidelines - minimum touch target size 44x44, contrast ratio 4.5:1\n  - Use existing\
+  \ theme configuration from Phase 1 without modifications\n  - Store all generated\
+  \ code in /Users/anilsharma/webkins/trustlink-aigardian-main/output/2025-12-23_181637_mobile-app/generated_code/\
+  \ directory\n  - Follow snake_case for file names in services/ and utils/, PascalCase\
+  \ for components\n  - Use Rich console output formatting in test reporters with\
+  \ color tags like [cyan]text[/cyan]"

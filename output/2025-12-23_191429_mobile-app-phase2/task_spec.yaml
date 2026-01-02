@@ -1,0 +1,121 @@
+"task_name: mobile-app-phase2-core-features\nobjective: Implement navigation, feed,\
+  \ post creation, profiles, and connections management for TrustLink AI Guardian\
+  \ mobile app\nrequirements:\n  - Implement React Navigation with bottom tab navigator\
+  \ (Feed, Network, Messages, Notifications, Profile)\n  - Create stack navigators\
+  \ for detail views and authentication flow\n  - Build infinite-scroll feed screen\
+  \ with FlatList, pull-to-refresh, and optimistic updates\n  - Display posts with\
+  \ AI moderation badges and interaction metrics from Supabase\n  - Create post composer\
+  \ with camera integration using expo-camera\n  - Support image upload to Supabase\
+  \ Storage with compression and progress tracking\n  - Implement user profile screen\
+  \ showing posts, connections, stats, and AI trust scores\n  - Add profile editing\
+  \ with profile picture upload from camera/gallery\n  - Build connections management\
+  \ with trust score visualization\n  - Implement connection request sending, accepting,\
+  \ and rejecting\n  - Create reusable UI component library (Button, Card, Input,\
+  \ Avatar, Badge)\n  - Use React Native Paper components as base with custom theming\n\
+  \  - Ensure offline-first capability where applicable using AsyncStorage\n  - Maintain\
+  \ 60fps scrolling performance and <1s navigation transitions\n  - Support both iOS\
+  \ and Android platforms\nfiles_to_modify:\n  - generated_code/App.tsx\n  - generated_code/app.json\n\
+  \  - generated_code/package.json\n  - generated_code/src/contexts/AuthContext.tsx\n\
+  \  - generated_code/src/config/supabase.ts\nnew_files:\n  - generated_code/src/navigation/AppNavigator.tsx\n\
+  \  - generated_code/src/navigation/AuthNavigator.tsx\n  - generated_code/src/navigation/TabNavigator.tsx\n\
+  \  - generated_code/src/navigation/types.ts\n  - generated_code/src/components/common/Button.tsx\n\
+  \  - generated_code/src/components/common/Card.tsx\n  - generated_code/src/components/common/Input.tsx\n\
+  \  - generated_code/src/components/common/Avatar.tsx\n  - generated_code/src/components/common/Badge.tsx\n\
+  \  - generated_code/src/components/common/LoadingSkeleton.tsx\n  - generated_code/src/components/posts/PostCard.tsx\n\
+  \  - generated_code/src/components/posts/PostComposer.tsx\n  - generated_code/src/components/posts/AIBadge.tsx\n\
+  \  - generated_code/src/components/profile/ProfileHeader.tsx\n  - generated_code/src/components/profile/ProfileStats.tsx\n\
+  \  - generated_code/src/components/profile/ProfileEditor.tsx\n  - generated_code/src/components/connections/ConnectionCard.tsx\n\
+  \  - generated_code/src/components/connections/TrustScoreBadge.tsx\n  - generated_code/src/components/connections/ConnectionRequestItem.tsx\n\
+  \  - generated_code/src/screens/FeedScreen.tsx\n  - generated_code/src/screens/NetworkScreen.tsx\n\
+  \  - generated_code/src/screens/MessagesScreen.tsx\n  - generated_code/src/screens/NotificationsScreen.tsx\n\
+  \  - generated_code/src/screens/ProfileScreen.tsx\n  - generated_code/src/screens/PostDetailScreen.tsx\n\
+  \  - generated_code/src/screens/EditProfileScreen.tsx\n  - generated_code/src/screens/UserProfileScreen.tsx\n\
+  \  - generated_code/src/hooks/usePosts.ts\n  - generated_code/src/hooks/useConnections.ts\n\
+  \  - generated_code/src/hooks/useProfile.ts\n  - generated_code/src/hooks/useImageUpload.ts\n\
+  \  - generated_code/src/hooks/useCamera.ts\n  - generated_code/src/types/post.ts\n\
+  \  - generated_code/src/types/connection.ts\n  - generated_code/src/types/profile.ts\n\
+  \  - generated_code/src/utils/imageCompression.ts\n  - generated_code/src/utils/storage.ts\n\
+  \  - generated_code/__tests__/hooks/usePosts.test.ts\n  - generated_code/__tests__/hooks/useConnections.test.ts\n\
+  \  - generated_code/__tests__/components/PostCard.test.tsx\n  - generated_code/__tests__/components/Button.test.tsx\n\
+  \  - generated_code/__tests__/integration/post-creation.test.tsx\n  - generated_code/__tests__/integration/connection-flow.test.tsx\n\
+  implementation_steps:\n  - Step 1: Install required dependencies (react-navigation,\
+  \ react-navigation-bottom-tabs, react-navigation-stack, expo-camera, expo-image-picker,\
+  \ react-native-paper, expo-image-manipulator)\n  - Step 2: Create navigation type\
+  \ definitions in src/navigation/types.ts with screen param lists for all navigators\n\
+  \  - Step 3: Build reusable UI components (Button, Card, Input, Avatar, Badge, LoadingSkeleton)\
+  \ in src/components/common/ using React Native Paper as base with theme integration\n\
+  \  - Step 4: Create type definitions for posts, connections, and profiles in src/types/\
+  \ matching Supabase schema from web app\n  - Step 5: Implement TabNavigator with\
+  \ 5 tabs (Feed, Network, Messages, Notifications, Profile) using bottom-tabs navigator\
+  \ with icons and labels\n  - Step 6: Create AuthNavigator for login/signup screens\
+  \ using stack navigator\n  - Step 7: Build AppNavigator that switches between AuthNavigator\
+  \ and TabNavigator based on authentication state from AuthContext\n  - Step 8: Implement\
+  \ usePosts hook with TanStack Query for fetching posts, infinite scroll, and optimistic\
+  \ updates (like, comment, share)\n  - Step 9: Create PostCard component displaying\
+  \ post content, author info, AI moderation badge, and interaction buttons with proper\
+  \ accessibility labels\n  - Step 10: Build FeedScreen with FlatList, infinite scroll\
+  \ using onEndReached, pull-to-refresh with RefreshControl, and loading skeletons\n\
+  \  - Step 11: Implement useCamera hook wrapping expo-camera with permission handling\
+  \ and camera capture functionality\n  - Step 12: Create useImageUpload hook for\
+  \ Supabase Storage upload with compression using expo-image-manipulator and progress\
+  \ tracking\n  - Step 13: Build PostComposer modal with text input, camera/gallery\
+  \ picker, image preview, upload progress, and post submission\n  - Step 14: Implement\
+  \ useProfile hook for fetching and updating user profiles with TanStack Query mutations\n\
+  \  - Step 15: Create ProfileHeader component showing avatar, name, bio, industry,\
+  \ and trust score badges\n  - Step 16: Build ProfileStats component displaying post\
+  \ count, connection count, and AI metrics\n  - Step 17: Implement ProfileScreen\
+  \ showing user's posts in FlatList, connections summary, and edit button (own profile\
+  \ only)\n  - Step 18: Create ProfileEditor component with form inputs for bio, skills,\
+  \ industry, and profile picture upload from camera/gallery\n  - Step 19: Implement\
+  \ useConnections hook for fetching connections, sending requests, and accepting/rejecting\
+  \ requests with TanStack Query\n  - Step 20: Create ConnectionCard component showing\
+  \ user info, mutual connections count, trust score visualization, and action buttons\n\
+  \  - Step 21: Build TrustScoreBadge component with color-coded trust score display\
+  \ (red/yellow/green based on score ranges)\n  - Step 22: Implement NetworkScreen\
+  \ with tabs for connections list and pending requests using SectionList\n  - Step\
+  \ 23: Create ConnectionRequestItem component for pending requests with accept/reject\
+  \ buttons\n  - Step 24: Add navigation between screens (FeedScreen -> PostDetailScreen,\
+  \ ProfileScreen -> EditProfileScreen, NetworkScreen -> UserProfileScreen)\n  - Step\
+  \ 25: Implement offline-first capabilities using AsyncStorage for caching posts\
+  \ and connection data\n  - Step 26: Add loading states, error boundaries, and empty\
+  \ states for all screens\n  - Step 27: Update App.tsx to use AppNavigator instead\
+  \ of basic structure from Phase 1\n  - Step 28: Add accessibility labels, roles,\
+  \ and touch target sizes (minimum 44x44) to all interactive elements\n  - Step 29:\
+  \ Optimize FlatList performance with React.memo, useMemo, useCallback, and getItemLayout\
+  \ where possible\n  - Step 30: Write unit tests for usePosts, useConnections hooks\
+  \ verifying data fetching and mutations\n  - Step 31: Write component tests for\
+  \ PostCard, Button, and other UI components using React Native Testing Library\n\
+  \  - Step 32: Create integration tests for post creation flow (camera -> upload\
+  \ -> post) and connection request flow (send -> accept/reject)\n  - Step 33: Test\
+  \ camera permissions flow and graceful degradation when permissions denied\n  -\
+  \ Step 34: Performance test scrolling at 60fps and navigation transitions under\
+  \ 1s using Expo development build\ntesting_requirements:\n  - Unit test usePosts\
+  \ hook for fetchPosts, likePost, commentPost with mock Supabase client\n  - Unit\
+  \ test useConnections hook for fetchConnections, sendRequest, acceptRequest, rejectRequest\n\
+  \  - Component test PostCard renders correctly with mock post data including AI\
+  \ badges\n  - Component test Button handles press events and disabled states\n \
+  \ - Component test Avatar loads images and handles fallback\n  - Integration test\
+  \ post creation: select image -> compress -> upload to storage -> create post record\
+  \ -> optimistic update\n  - Integration test connection flow: send request -> recipient\
+  \ sees notification -> accept -> both users see connection\n  - Test camera permission\
+  \ request and denial handling with appropriate error messages\n  - Test image upload\
+  \ with progress tracking and error recovery\n  - Test offline mode: posts are cached\
+  \ and displayed when network unavailable\n  - Test navigation between all screens\
+  \ without memory leaks\n  - Verify accessibility with screen reader (TalkBack/VoiceOver)\n\
+  \  - Performance test: 60fps scrolling with 100+ posts in feed\n  - Performance\
+  \ test: navigation transitions complete in <1s\n  - Test coverage >70% for new hooks\
+  \ and components\nconstraints:\n  - Do NOT modify Supabase schema or backend - use\
+  \ existing tables (profiles, posts, ai_post_analysis, connections, trust_scores,\
+  \ notifications)\n  - Do NOT break existing Phase 1 code (AuthContext, Supabase\
+  \ client config, theme configuration)\n  - Follow existing TypeScript strict mode\
+  \ from tsconfig.json\n  - Use existing color scheme and theme from Phase 1 theme.ts\n\
+  \  - Do NOT add dependencies larger than 5MB - keep total bundle under 50MB\n  -\
+  \ Follow React Navigation v6 patterns for type-safe navigation\n  - Use FlatList,\
+  \ not ScrollView, for lists longer than 10 items\n  - Compress images to max 1080px\
+  \ width and 80% quality before upload\n  - Follow React Native Performance best\
+  \ practices (avoid inline functions in render, use PureComponent/React.memo)\n \
+  \ - Ensure minimum touch target size of 44x44 for accessibility\n  - Support both\
+  \ iOS and Android without platform-specific code where possible\n  - Use React Native\
+  \ Paper components as base but customize with theme\n  - Do NOT implement Messages\
+  \ screen functionality yet (placeholder only) - that's for Phase 3\n  - Do NOT implement\
+  \ Notifications screen functionality yet (placeholder only) - that's for Phase 3"

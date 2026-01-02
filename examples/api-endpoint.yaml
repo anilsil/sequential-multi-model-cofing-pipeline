@@ -1,0 +1,43 @@
+name: add-user-profile-endpoint
+objective: Add RESTful endpoint for user profile management
+
+description: |
+  Implement a new API endpoint for managing user profiles with
+  CRUD operations (Create, Read, Update, Delete).
+
+requirements:
+  - GET /api/profiles/:id - Retrieve user profile
+  - PUT /api/profiles/:id - Update user profile
+  - DELETE /api/profiles/:id - Delete user profile
+  - Implement authentication middleware
+  - Add input validation for profile data
+  - Return proper HTTP status codes
+  - Add comprehensive error handling
+
+constraints:
+  - Follow existing API route patterns
+  - Use existing database models
+  - No new database migrations unless necessary
+  - Follow existing authentication pattern
+  - Maintain backward compatibility
+
+files_to_modify:
+  - src/api/routes.py
+  - src/api/controllers/profile.py
+
+new_files:
+  - src/validators/profile_validator.py
+  - tests/api/test_profile_endpoints.py
+
+testing_requirements:
+  - Unit tests for each endpoint
+  - Test authentication requirements
+  - Test input validation
+  - Test error cases (404, 401, 400)
+  - Integration tests for full CRUD workflow
+
+security_considerations:
+  - Ensure users can only access/modify their own profiles
+  - Sanitize all input data
+  - Prevent SQL injection
+  - Rate limiting on write operations

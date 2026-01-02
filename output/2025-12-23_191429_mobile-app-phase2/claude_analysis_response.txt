@@ -1,0 +1,49 @@
+Based on my analysis of the repository, here's a comprehensive overview:
+
+## Repository Analysis
+
+**Primary Language**: Python 3.11+ (modern type hints like `list[str]`, uses pathlib extensively)
+
+**Project Type**: CLI tool - A prompt orchestrator for governed multi-agent coding workflows
+
+**Key Frameworks**:
+- **Typer** - Type-safe CLI framework with automatic help generation
+- **Rich** - Terminal formatting (colors, panels, tables, progress bars)
+- **Pydantic v2** - Data validation and configuration management
+- **PyYAML** - YAML parsing for task specs and agent responses
+- **Google Generative AI & Anthropic SDKs** - AI integrations (optional/for automation mode)
+
+**Code Organization**:
+```
+agentic_code/              # Main package
+├── cli.py                 # Entry point (Typer CLI app)
+├── pipeline.py            # AgenticPipeline orchestration
+├── automated_pipeline.py  # AutomatedAgenticPipeline variant
+├── config.py              # Pydantic Config model
+├── utils.py               # File I/O, formatting helpers
+└── agents/                # Agent implementations
+    ├── claude.py          # Analysis, planning, decision prompts
+    ├── codex.py           # Implementation prompts
+    └── gemini.py          # Verification prompts
+```
+
+**Testing Approach**: pytest framework (tests in generated_code outputs, not core package tests yet)
+
+**Notable Patterns**:
+- **Separation of duties** - Each agent has specific role (Claude plans/decides, Codex implements, Gemini verifies)
+- **Human-in-the-loop** - Every stage requires user approval via `wait_for_response()` and `confirm_action()`
+- **Artifact preservation** - Timestamped output directories with complete audit trails (prompts, responses, decisions)
+- **Prompt template pattern** - Hardcoded templates with `.format()` placeholders (e.g., `REPO_ANALYSIS_PROMPT`)
+
+**Dependencies**:
+- Core: typer (CLI), rich (terminal UI), pyyaml (parsing), pydantic (validation)
+- Optional dev: pytest, black, ruff, mypy
+- AI SDKs (for automation mode only, not required for manual prompt orchestration)
+
+**Code Style**:
+- Black formatter (100 char line length)
+- Ruff linter
+- Type hints (but lenient mypy - `disallow_untyped_defs = false`)
+- `Path` objects over strings
+- f-strings and `.format()` (no `%` formatting)
+- Rich console output with color tags like `[cyan]text[/cyan]`

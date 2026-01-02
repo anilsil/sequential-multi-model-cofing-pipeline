@@ -1,0 +1,50 @@
+Based on my analysis of the repository, here's a comprehensive overview:
+
+## Repository Analysis
+
+**1. Primary Language(s)**: Python 3.11+ exclusively
+
+**2. Project Type**: CLI tool - a prompt orchestrator for governed multi-agent coding workflows
+
+**3. Key Frameworks**:
+- **Typer** (CLI framework with type-safe argument parsing)
+- **Rich** (terminal formatting - colors, tables, panels, syntax highlighting)
+- **Pydantic** (data validation and configuration management)
+- **PyYAML** (YAML parsing for task specs and responses)
+- **google-generativeai** & **anthropic** (for automated mode API calls)
+
+**4. Code Organization**:
+```
+agentic_code/
+├── cli.py                 # Typer CLI entry point
+├── pipeline.py            # Manual pipeline orchestration (prompt-based)
+├── automated_pipeline.py  # Automated pipeline (uses Claude CLI)
+├── config.py              # Pydantic configuration model
+├── utils.py               # Rich formatting, file I/O, user interactions
+└── agents/
+    ├── claude.py          # Repository analysis, planning, decision prompts
+    ├── codex.py           # Implementation prompts
+    └── gemini.py          # Verification prompts
+```
+
+**5. Testing Approach**: Pytest configured in `pyproject.toml` optional dependencies. Test mode support via `config.test_mode` flag for automated confirmations.
+
+**6. Notable Patterns**:
+- **Separation of Duties**: Different AI agents for analysis/planning/implementation/verification
+- **Human-in-the-Loop**: Every stage requires user confirmation and manual prompt pasting (manual mode)
+- **Artifact Preservation**: Timestamped output directories with complete audit trails
+- **Template-Based Prompts**: Hardcoded prompt templates with `.format()` placeholders
+- **Dual Execution Modes**: Manual (prompt-based) and automated (Claude CLI subprocess)
+
+**7. Dependencies**:
+- **Core**: typer, rich, pyyaml, pydantic, google-generativeai, anthropic
+- **Dev**: pytest, black, ruff, mypy
+- **Python 3.11+** required (modern type hints like `list[str]`, `str | Dict`)
+
+**8. Code Style**:
+- **Line length**: 100 characters (Black/Ruff)
+- **Path handling**: `pathlib.Path` objects (never strings)
+- **Console output**: Rich library (`console.print()` with color tags)
+- **Type hints**: Lenient mypy (`disallow_untyped_defs = false`)
+- **Naming**: snake_case for functions/variables, PascalCase for classes
+- **String formatting**: f-strings and `.format()` (no `%` formatting)

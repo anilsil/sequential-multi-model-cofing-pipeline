@@ -1,3 +1,31 @@
+Metadata-Version: 2.4
+Name: agentic-code
+Version: 0.1.0
+Summary: Local-first, governed multi-model agentic coding pipeline
+Author: Agentic Code Team
+License: MIT
+Keywords: ai,coding,agents,governance,cli
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer>=0.9.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: google-generativeai>=0.3.0
+Requires-Dist: anthropic>=0.15.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Dynamic: license-file
+
 # Agentic Code - Prompt Orchestrator
 
 **🆓 100% FREE - Local-first, governed multi-model agentic coding pipeline**
@@ -62,56 +90,6 @@ A CLI tool that orchestrates governed, multi-agent coding workflows using **prom
 
 ---
 
-## ⚡ Execution Modes
-
-This tool offers three distinct execution modes to fit your workflow, from fully manual to fully automated.
-
----
-
-### **1. Prompt-Based (Manual & Free)**
-
-This is the default mode. It's 100% free and gives you maximum control by generating prompts for you to use in your existing AI tools (like the Claude Code CLI or Gemini's web interface).
-
-**Usage:**
-```bash
-agentic-code run examples/simple-function.md
-```
-- **Cost:** Free
-- **Control:** Full human-in-the-loop at every stage.
-- **Requirements:** Manual copy-pasting between tools.
-
----
-
-### **2. Fully Automated (API-Based)**
-
-This mode uses APIs directly for a truly hands-off experience. It's the fastest way to run the pipeline but requires you to have API keys. By default, it uses the Gemini API for code generation.
-
-**Usage:**
-```bash
-# Ensure GEMINI_API_KEY and ANTHROPIC_API_KEY are set
-python scripts/truly_automated_pipeline.py examples/simple-function.md
-```
-- **Cost:** Requires API credits for Gemini and Claude.
-- **Control:** Automated execution with optional human review checkpoints.
-- **Requirements:** `GEMINI_API_KEY` and `ANTHROPIC_API_KEY` environment variables.
-- **Note:** You can override the code generation step to use a local CLI tool (like a `codex` CLI) by setting the `implementation_cli_command` in the configuration. See `agentic_code/config.py`.
-
----
-
-### **3. CLI Orchestrator (Hybrid & Free)**
-
-This mode automates the calls to the free Claude Code CLI but still requires manual steps for code implementation and the optional Gemini verification. It's a good balance between automation and cost.
-
-**Usage:**
-```bash
-python scripts/hybrid_pipeline.py examples/simple-function.md
-```
-- **Cost:** Free
-- **Control:** Partially automated, with manual steps for coding and verification.
-- **Requirements:** Claude Code CLI installed.
-
----
-
 ## 🚀 Quick Start
 
 ### Installation
@@ -124,21 +102,25 @@ cd agentic-code
 pip install -e .
 ```
 
-### Run Your First Pipeline (Prompt-Based)
+### Verify Installation
 
-This is the recommended way to start, as it's free and helps you understand each step of the process.
+```bash
+agentic-code --version
+# Output: agentic-code version 0.1.0
+#         Mode: Prompt Orchestrator (100% FREE)
+```
+
+### Run Your First Pipeline
 
 ```bash
 # Run with an example task
-agentic-code run examples/simple-function.md
+agentic-code run examples/simple-function.md --skip-verification
 
 # The tool will:
-# 1. Generate prompts in an `output/` directory.
-# 2. Pause at each stage for you to provide responses.
-# 3. Create a complete audit trail of the entire process.
+# 1. Generate prompts in output/ directory
+# 2. Pause at each stage for you to provide responses
+# 3. Create complete audit trail
 ```
-
-The tool will guide you through each stage, telling you which prompts to use and where to save the responses.
 
 ---
 

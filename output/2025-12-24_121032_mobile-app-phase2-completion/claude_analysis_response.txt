@@ -1,0 +1,36 @@
+## Repository Analysis
+
+**Primary Language**: Python 3.11+ (requires modern type hints)
+
+**Project Type**: CLI tool (command-line interface) for orchestrating multi-agent AI workflows
+
+**Key Frameworks**:
+- **Typer**: CLI framework with type-safe argument parsing
+- **Rich**: Terminal formatting (colors, panels, tables, progress)
+- **Pydantic v2**: Configuration validation and data modeling
+- **PyYAML**: YAML parsing for task specifications and responses
+- **Anthropic SDK** & **Google Generative AI**: Optional for automated mode
+
+**Code Organization**:
+- `agentic_code/` - Main package directory
+  - `cli.py` - Typer CLI entry point
+  - `pipeline.py` - Orchestrates 5-stage workflow (prompt-based)
+  - `automated_pipeline.py` - Automated execution variant
+  - `config.py` - Pydantic configuration model
+  - `utils.py` - File I/O, user interaction, Rich formatting helpers
+  - `agents/` - Agent implementations (claude.py, codex.py, gemini.py)
+- `examples/` - Task specification examples (.md, .yaml, .json)
+- `scripts/` - Automation scripts (`fully_automated.py`, `fully_automated_with_codex.py`)
+- `output/` - Timestamped pipeline run artifacts
+
+**Testing Approach**: pytest framework (in `dev` dependencies), though no test files found in main codebase yet
+
+**Notable Patterns**:
+- **Agent pattern**: Separation of duties (Claude plans/decides, Codex implements, Gemini verifies)
+- **Human-in-the-loop**: Blocks for user confirmation at each stage
+- **Prompt generation**: Hardcoded templates with `.format()` placeholders
+- **Artifact preservation**: All outputs saved as plain text (Markdown, YAML, JSON) in timestamped directories
+
+**Dependencies**: Minimal core dependencies (typer, rich, pyyaml, pydantic). AI SDKs optional for automation mode.
+
+**Code Style**: Black formatter (100-char lines), Ruff linter, lenient mypy, `pathlib.Path` for all file operations, Rich console for all user output.

@@ -1,0 +1,29 @@
+"task_name: email-validation-utility\nobjective: Add email validation function to\
+  \ utilities with comprehensive test coverage\nrequirements:\n  - Create validate_email()\
+  \ function that accepts string and returns boolean\n  - Use regex pattern for email\
+  \ format validation (RFC 5322 simplified)\n  - Handle edge cases including None,\
+  \ empty strings, and malformed formats\n  - Follow existing utils.py code style\
+  \ and patterns\n  - Add type hints using Python 3.11+ syntax\n  - Include docstring\
+  \ with examples\nfiles_to_modify:\n  - agentic_code/utils.py\nnew_files:\n  - tests/test_utils.py\n\
+  implementation_steps:\n  - \"Step 1: Add validate_email() function to agentic_code/utils.py\
+  \ after existing utility functions\"\n  - \"Step 2: Import re module at top of utils.py\
+  \ if not already present\"\n  - \"Step 3: Define regex pattern as module-level constant\
+  \ EMAIL_PATTERN\"\n  - \"Step 4: Implement function with signature: validate_email(email:\
+  \ str | None) -> bool\"\n  - \"Step 5: Handle None and empty string cases explicitly\
+  \ (return False)\"\n  - \"Step 6: Apply regex pattern matching for valid format\"\
+  \n  - \"Step 7: Create tests/ directory if it doesn't exist\"\n  - \"Step 8: Create\
+  \ test_utils.py with pytest test class TestEmailValidation\"\n  - \"Step 9: Add\
+  \ test cases for valid emails, invalid formats, and edge cases\"\n  - \"Step 10:\
+  \ Verify tests pass with pytest command\"\ntesting_requirements:\n  - Test valid\
+  \ single emails (user@example.com, name.last@domain.co.uk, user+tag@example.com)\n\
+  \  - Test invalid formats (missing @, missing domain, missing local part, double\
+  \ @)\n  - Test edge cases (None, empty string, whitespace only, very long email\
+  \ >254 chars)\n  - Test special characters in local part (dots, plus signs, hyphens)\n\
+  \  - Use pytest framework with parametrize decorator for multiple test cases\n \
+  \ - Achieve 100% code coverage for validate_email function\nconstraints:\n  - Do\
+  \ NOT add external validation libraries (use standard library re module only)\n\
+  \  - Do NOT modify existing functions in utils.py\n  - Follow existing code style\
+  \ (100 char line length, snake_case naming)\n  - Use pathlib.Path for any file operations\
+  \ (not applicable here but maintain consistency)\n  - Add function after existing\
+  \ utilities, before if __name__ == \"__main__\" block if present\n  - Keep regex\
+  \ pattern simple and maintainable (RFC 5322 simplified, not full spec)"

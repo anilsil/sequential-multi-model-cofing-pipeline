@@ -1,0 +1,76 @@
+task_name: url-validation-system
+objective: Implement AI-powered URL validation system for detecting malicious, spam, and phishing URLs in user content
+requirements:
+  - Extract URLs from text content using regex patterns
+  - Validate URL format (protocol, domain, path, query parameters)
+  - Detect URL obfuscation techniques (shorteners, redirects, homographs)
+  - Calculate spam, phishing, malicious, and authenticity scores (0-1 scale)
+  - Support blacklist/whitelist domain checking
+  - Handle edge cases (international domains, encoded URLs, IP addresses)
+  - Rate limiting for URL analysis requests
+  - Store URL analysis results with metadata
+  - Provide CLI commands for URL analysis
+files_to_modify:
+  - agentic_code/cli.py
+new_files:
+  - agentic_code/url_validator.py
+  - agentic_code/url_analyzer.py
+  - agentic_code/url_extractor.py
+  - agentic_code/url_database.py
+  - tests/test_url_validator.py
+  - tests/test_url_analyzer.py
+  - tests/test_url_extractor.py
+  - data/blacklist_domains.txt
+  - data/whitelist_domains.txt
+  - data/suspicious_keywords.txt
+implementation_steps:
+  - "Step 1: Create url_extractor.py with extract_urls() function using regex to find URLs in text"
+  - "Step 2: Create url_validator.py with validate_url_format() for structural validation"
+  - "Step 3: Create url_analyzer.py with AI scoring functions (calculate_spam_score, calculate_phishing_score, calculate_malicious_score, calculate_authenticity_score)"
+  - "Step 4: Implement detect_homograph_attack() for Unicode lookalike domain detection"
+  - "Step 5: Implement detect_url_shorteners() to identify and unwrap shortened URLs"
+  - "Step 6: Create url_database.py with URLAnalysisDB class for storing analysis results using SQLite"
+  - "Step 7: Add domain blacklist/whitelist checking in url_analyzer.py"
+  - "Step 8: Create data files (blacklist_domains.txt, whitelist_domains.txt, suspicious_keywords.txt)"
+  - "Step 9: Add CLI commands to cli.py using Typer (analyze-url, batch-analyze, add-to-blacklist)"
+  - "Step 10: Implement rate limiting using simple time-based counter"
+  - "Step 11: Add Rich formatting for URL analysis output (colored scores, warning badges)"
+  - "Step 12: Create comprehensive unit tests for all modules"
+testing_requirements:
+  - Test URL extraction from various text formats (plain text, markdown, HTML-like)
+  - Test URL format validation (valid: https://example.com, invalid: htp://bad, javascript:alert)
+  - Test spam detection heuristics (tracking parameters, suspicious keywords, redirects)
+  - Test phishing detection (homograph attacks, brand impersonation patterns)
+  - Test malicious URL detection (executable extensions, suspicious ports, IP addresses)
+  - Test authenticity scoring (HTTPS presence, domain age indicators, TLD reputation)
+  - Test blacklist/whitelist matching (exact domain, subdomain wildcards)
+  - Test edge cases (very long URLs >2000 chars, international domains, URL-encoded content)
+  - Test rate limiting (exceed limit should return error)
+  - Test database storage and retrieval of analysis results
+  - Integration test: full pipeline from text input to scored output
+constraints:
+  - Do NOT add external API dependencies (no requests, httpx, etc.)
+  - Do NOT make network calls for real-time URL checking (offline analysis only)
+  - Follow existing Typer CLI pattern from cli.py
+  - Use Pathlib.Path for file operations (never string paths)
+  - Use Rich console for output formatting (match existing style)
+  - Line length max 100 characters (Black/Ruff compliance)
+  - Use Python 3.11+ type hints (list[str] not List[str])
+  - Store data files in data/ directory at repository root
+  - Use SQLite for URL analysis database (store in output/ directory)
+  - Follow snake_case naming convention throughout
+  - No modification to existing agents/ directory
+  - Maintain backward compatibility with existing CLI commands
+security_considerations:
+  - Sanitize all URL inputs to prevent code injection
+  - Never execute or follow URLs automatically
+  - Validate file paths for blacklist/whitelist to prevent directory traversal
+  - Use parameterized queries for SQLite to prevent SQL injection
+  - Rate limit: max 100 URLs per minute per session
+  - Log suspicious patterns but don't expose detection logic details
+performance_requirements:
+  - Single URL analysis must complete within 100ms
+  - Batch analysis: support up to 50 URLs per request
+  - Domain blacklist lookup using set() for O(1) performance
+  - Cache compiled regex patterns for URL extraction
+  - Database queries should use indexes on timestamp and domain fields

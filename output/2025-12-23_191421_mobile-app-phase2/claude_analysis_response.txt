@@ -1,0 +1,55 @@
+## Repository Analysis
+
+### 1. **Primary Language(s)**
+Python 3.11+ (exclusively)
+
+### 2. **Project Type**
+CLI tool (command-line interface) - A prompt orchestrator for governed multi-agent coding workflows
+
+### 3. **Key Frameworks**
+- **Typer** - CLI framework with type-safe argument parsing
+- **Rich** - Terminal UI formatting (colors, panels, tables, progress)
+- **Pydantic v2** - Data validation and configuration management
+- **PyYAML** - YAML parsing for task specs and responses
+- Optional: `google-generativeai`, `anthropic` SDKs (for automated mode)
+
+### 4. **Code Organization**
+```
+agentic_code/          # Main package
+├── cli.py             # Typer CLI entry point
+├── pipeline.py        # Pipeline orchestration (5-stage workflow)
+├── automated_pipeline.py  # Automated execution variant
+├── config.py          # Pydantic configuration model
+├── utils.py           # File I/O, formatting, user interaction
+└── agents/            # Agent implementations
+    ├── claude.py      # Analysis, planning, decision prompts
+    ├── codex.py       # Implementation prompts
+    └── gemini.py      # Verification prompts
+```
+
+### 5. **Testing Approach**
+- **Framework**: pytest (configured in `pyproject.toml`)
+- **Location**: No native test directory found; tests appear in `output/*/generated_code/tests/` (user-generated artifacts)
+- **Dev tools**: Black (formatting), Ruff (linting), mypy (type checking - lenient mode)
+
+### 6. **Notable Patterns**
+- **Human-in-the-loop**: Every pipeline stage requires explicit user confirmation and manual file saving
+- **Prompt orchestration**: Generates prompts instead of making API calls (zero-cost architecture)
+- **Separation of duties**: Different agents handle different stages (Claude plans/decides, Codex implements, Gemini verifies)
+- **Artifact preservation**: All runs create timestamped directories with complete audit trails (Markdown, YAML, JSON)
+- **Template-based prompts**: Hardcoded prompt templates with `.format()` placeholders
+
+### 7. **Dependencies**
+**Core**: `typer>=0.9.0`, `rich>=13.0.0`, `pyyaml>=6.0`, `pydantic>=2.0.0`  
+**Optional automation**: `google-generativeai>=0.3.0`, `anthropic>=0.15.0`  
+**Dev**: `pytest`, `black`, `ruff`, `mypy`
+
+### 8. **Code Style**
+- **Line length**: 100 characters (Black/Ruff)
+- **Naming**: Snake_case for functions/variables, PascalCase for classes
+- **Paths**: Exclusively `pathlib.Path` objects (never string concatenation)
+- **Console output**: Rich library (`console.print()` with color tags like `[cyan]text[/cyan]`)
+- **String formatting**: f-strings or `.format()` (no `%` formatting)
+- **Type hints**: Modern Python 3.11+ syntax (`list[str]` not `List[str]`)
+- **Docstrings**: Google-style with Args/Returns sections
+- **Type checking**: Lenient (`disallow_untyped_defs = false`)

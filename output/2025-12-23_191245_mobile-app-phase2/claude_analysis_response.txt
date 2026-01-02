@@ -1,0 +1,36 @@
+## Repository Analysis
+
+**Primary Language**: Python 3.11+
+
+**Project Type**: CLI tool (command-line orchestration framework)
+
+**Key Frameworks/Libraries**:
+- **Typer**: CLI framework with type-safe argument parsing
+- **Rich**: Terminal UI formatting (colors, panels, tables)
+- **PyYAML**: YAML parsing for task specs and responses
+- **Pydantic v2**: Data validation and configuration management
+- **google-generativeai & anthropic**: AI SDK integrations (for optional automated mode)
+
+**Code Organization**:
+- `agentic_code/` - Main package (agents, pipeline, config, utils, CLI)
+  - `agents/` - Agent modules (claude.py, codex.py, gemini.py)
+  - `cli.py` - Typer CLI entry point
+  - `pipeline.py` - 5-stage orchestration logic
+  - `automated_pipeline.py` - Automated execution variant
+  - `config.py` - Pydantic configuration model
+  - `utils.py` - File I/O, user prompts, formatting
+- `scripts/` - Automation scripts (fully_automated.py)
+- `output/` - Generated artifacts (timestamped directories)
+- `examples/` - Sample task files (.md, .yaml)
+
+**Testing Approach**: pytest framework (in dev dependencies), but no test files found in main repo (tests exist in output/generated_code)
+
+**Notable Patterns**:
+- **Prompt orchestrator pattern**: Generates prompts instead of making API calls
+- **Human-in-the-loop**: `wait_for_response()` blocks until user provides input
+- **Separation of duties**: Different agents for planning (Claude), implementation (Codex), verification (Gemini)
+- **Artifact preservation**: All outputs saved as plain text (Markdown, YAML, JSON)
+
+**Key Dependencies**: typer, rich, pyyaml, pydantic (core); anthropic, google-generativeai (optional automation)
+
+**Code Style**: Black formatter (100-char line length), Ruff linter, lenient mypy type checking, pathlib.Path for all file operations, Rich console for UI

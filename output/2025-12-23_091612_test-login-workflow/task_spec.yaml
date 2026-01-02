@@ -1,0 +1,47 @@
+"task_name: test-login-workflow\nobjective: Create comprehensive automated test suite\
+  \ for user authentication login workflow covering happy paths, error handling, security\
+  \ scenarios, and edge cases\nrequirements:\n  - Implement unit tests for login validation\
+  \ logic (email format, password requirements, input sanitization)\n  - Implement\
+  \ integration tests for complete login flow (authentication, session creation, redirects)\n\
+  \  - Implement security tests for common vulnerabilities (XSS, SQL injection, rate\
+  \ limiting, password exposure)\n  - Test error handling for invalid credentials,\
+  \ empty fields, non-existent users\n  - Test edge cases including long inputs, special\
+  \ characters, simultaneous logins, expired sessions\n  - Use existing pytest framework\
+  \ with fixtures and mocks\n  - Mock external dependencies (database, Supabase Auth\
+  \ API calls)\n  - Achieve >80% test coverage for login functionality\n  - All tests\
+  \ must be isolated, repeatable, and fast (<5 seconds for unit tests)\n  - Follow\
+  \ existing test patterns in codebase (pytest conventions, fixture usage)\nfiles_to_modify:\n\
+  \  - None (only adding test files, no production code changes)\nnew_files:\n  -\
+  \ tests/test_login_validation.py\n  - tests/test_login_integration.py\n  - tests/test_login_security.py\n\
+  \  - tests/fixtures/auth_fixtures.py\n  - tests/conftest.py\n  - tests/README.md\n\
+  implementation_steps:\n  - Step 1: Create pytest configuration in tests/conftest.py\
+  \ with shared fixtures (mock Supabase client, test users, auth responses)\n  - Step\
+  \ 2: Create tests/fixtures/auth_fixtures.py with sample valid/invalid user data,\
+  \ authentication responses, and mock utilities\n  - Step 3: Implement tests/test_login_validation.py\
+  \ for unit tests (email validation, password validation, input sanitization, empty\
+  \ field checks)\n  - Step 4: Implement tests/test_login_integration.py for full\
+  \ login flow (successful login, session persistence, token storage, redirects, logout\
+  \ scenarios)\n  - Step 5: Implement tests/test_login_security.py for security scenarios\
+  \ (XSS prevention, SQL injection blocking, rate limiting, password masking, secure\
+  \ error messages)\n  - Step 6: Create tests/README.md documenting how to run tests,\
+  \ what each test file covers, and how to add new tests\n  - Step 7: Run pytest with\
+  \ coverage report to verify >80% coverage target\n  - Step 8: Ensure all tests pass\
+  \ and execute in <5 seconds for unit tests\ntesting_requirements:\n  - All test\
+  \ files must use pytest framework with descriptive test names (test_valid_email_login_succeeds)\n\
+  \  - Use pytest fixtures for test data setup and teardown\n  - Mock Supabase authentication\
+  \ API calls using pytest-mock or unittest.mock\n  - Include pytest markers for test\
+  \ categories (@pytest.mark.unit, @pytest.mark.integration, @pytest.mark.security)\n\
+  \  - Test coverage report generated via pytest-cov plugin\n  - Each test must have\
+  \ clear assertions with descriptive failure messages\n  - Use parametrize decorator\
+  \ for testing multiple input variations efficiently\n  - Include both positive and\
+  \ negative test cases for each requirement\n  - Tests must clean up any test data/state\
+  \ after execution\nconstraints:\n  - Do NOT modify any production code in src/ directory\n\
+  \  - Do NOT modify existing authentication logic or Supabase integration\n  - Do\
+  \ NOT add new production dependencies (only dev/test dependencies like pytest-cov\
+  \ if missing)\n  - Follow pytest naming conventions (test_*.py files, test_* functions)\n\
+  \  - Use existing mock patterns from codebase if any exist\n  - Tests must be runnable\
+  \ via simple 'pytest' command\n  - Do NOT commit sensitive credentials or API keys\
+  \ in test fixtures\n  - Error messages in tests should not expose implementation\
+  \ details\n  - Follow Python 3.11+ type hints in test code\n  - Use pathlib.Path\
+  \ for file paths in tests if needed\n  - Maintain test isolation (no test should\
+  \ depend on another test's execution)"
