@@ -114,8 +114,7 @@ This is a Python-based CLI tool built with the following characteristics:
 
 **Primary Language**: Python 3.11+
 
-**Project Type**: Command-line tool (CLI) for orchestrating multi-agent
-coding workflows
+**Project Type**: Command-line tool (CLI) for orchestrating multi-model sequential workflows with separation of duties
 
 **Key Frameworks**:
 - Typer (CLI framework)
@@ -133,7 +132,7 @@ coding workflows
 **Testing Approach**: No tests found yet (opportunity to add pytest)
 
 **Notable Patterns**:
-- Agent-based architecture with separation of duties
+- Multi-model sequential architecture with separation of duties
 - Prompt-based orchestration (no API calls)
 - Human-in-the-loop validation
 - Artifact preservation for audit trails

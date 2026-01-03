@@ -324,7 +324,7 @@ jobs:
 A: No! Claude Code CLI requires no API keys, and we're just calling it programmatically.
 
 **Q: How is this different from Cursor?**
-A: This is for **governance** and **multi-agent workflows**, not just code generation.
+A: This is for **governance** and **multi-model workflows with separation of duties**, not just code generation.
 
 **Q: Can I use API keys instead?**
 A: Yes, but it costs per task ($0.15-0.30). Claude CLI uses subscription pricing (Claude Pro $20/mo)!

@@ -1,7 +1,9 @@
 """
 Automated pipeline orchestration for agentic-code.
 
-Coordinates the multi-agent workflow using API calls and human-in-the-loop for review.
+Coordinates a sequential multi-model workflow using API calls with human-in-the-loop
+governance. This is a sequential pipeline with separation of duties, not a concurrent
+multi-agent system.
 """
 
 import time
@@ -25,7 +27,9 @@ from .utils import (
 
 class AutomatedAgenticPipeline:
     """
-    Orchestrates the governed multi-agent coding pipeline (automated).
+    Orchestrates the governed multi-model sequential pipeline (automated).
+
+    Sequential multi-model architecture with API automation and human governance.
     """
 
     def __init__(self, config: Config):

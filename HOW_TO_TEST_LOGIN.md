@@ -263,7 +263,7 @@ Agentic-code helps you create:
 ✅ **Proper mocking** for Supabase, API calls, etc.
 ✅ **Security validation** for auth flows
 ✅ **Documentation** on how to run and maintain tests
-✅ **Best practices** enforced by multi-agent review
+✅ **Best practices** enforced by multi-model review with separation of duties
 
 ## 🆚 Agentic-Code vs. Just Using Cursor
 
@@ -273,7 +273,7 @@ Agentic-code helps you create:
 | **Structure** | YAML spec ensures completeness | Ad-hoc implementation |
 | **Verification** | Optional Gemini security check | You review yourself |
 | **Audit Trail** | Complete record of decisions | No record |
-| **Governance** | Multi-agent separation of duties | Single AI does everything |
+| **Governance** | Multi-model separation of duties | Single AI does everything |
 | **Learning** | See the reasoning process | Black box |
 
 ## ❓ FAQ

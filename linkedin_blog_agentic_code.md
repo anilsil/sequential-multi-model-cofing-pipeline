@@ -323,7 +323,7 @@ With agentic-code, **every prompt is visible and editable**. You learn:
 | **Prompt visibility** | Hidden | **Fully visible** |
 | **Prompt editing** | Not allowed | **Edit anytime** |
 | **Audit trail** | Partial logs | **Complete artifacts** |
-| **Multi-agent workflow** | Usually single AI | **5 specialized agents** |
+| **Multi-model workflow** | Usually single AI | **5 specialized model roles** |
 | **Separation of duties** | No | **Enforced** |
 | **Human approval** | Optional | **Required every stage** |
 | **Learning value** | Low (black box) | **High (transparent)** |
@@ -349,12 +349,12 @@ With agentic-code, **every prompt is visible and editable**. You learn:
 
 #### The Future of Agentic Coding
 
-I believe the future of AI in software development isn't about **replacing developers**—it's about **augmenting them with governed, transparent, multi-agent workflows**.
+I believe the future of AI in software development isn't about **replacing developers**—it's about **augmenting them with governed, transparent, multi-model workflows with separation of duties**.
 
 The dream of "tell AI what you want and it builds it" is real, but it needs:
 - **Transparency**: See every decision
 - **Governance**: Human approval at key stages
-- **Separation of duties**: Multiple specialized AI agents
+- **Separation of duties**: Multiple specialized AI models in sequential pipeline
 - **Accessibility**: Not locked behind expensive APIs
 - **Auditability**: Complete trail for compliance
 

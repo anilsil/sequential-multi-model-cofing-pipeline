@@ -1,27 +1,29 @@
 # Agentic Code - Prompt Orchestrator
 
-**Local-first, governed multi-model agentic coding pipeline**
+**Local-first, governed multi-model coding pipeline**
 
-A CLI tool that orchestrates governed, multi-agent coding workflows using **prompt generation** instead of API calls. Subscription-based tools, maximum control.
+A CLI tool that orchestrates governed, multi-model coding workflows with **separation of duties** using **prompt generation** instead of API calls. Subscription-based tools, maximum control.
 
 ---
 
 ## 🎯 What Makes This Different
 
 ### **Traditional AI Coding Tools:**
-- ❌ Single AI does everything (plan, code, verify)
+- ❌ Single AI model does everything (plan, code, verify)
 - ❌ Black-box execution (can't see prompts)
 - ❌ API costs ($0.10-0.50 per task)
 - ❌ No separation of duties
 - ❌ Limited governance
 
 ### **Agentic Code (Prompt Orchestrator):**
-- ✅ **Separation of duties** - Different AI models for different roles
+- ✅ **Separation of duties** - Different AI models for different roles (multi-model architecture)
 - ✅ **100% transparent** - See and edit every prompt
 - ✅ **Subscription-based** - Uses tools like Claude Code CLI, Cursor, Gemini (no pay-per-use API charges)
 - ✅ **Human-in-the-loop** - Review and approve every step
 - ✅ **Complete audit trail** - Every decision documented
 - ✅ **No API keys required** - Works with tools you already have
+
+**Note**: This is a sequential multi-model pipeline with governance, not a concurrent multi-agent system with emergent behavior.
 
 ---
 
@@ -29,30 +31,36 @@ A CLI tool that orchestrates governed, multi-agent coding workflows using **prom
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  PROMPT ORCHESTRATOR PIPELINE                           │
+│  MULTI-MODEL SEQUENTIAL PIPELINE                        │
+│  (Separation of Duties Architecture)                    │
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
-│  1. CLAUDE (Architect) - via Claude Code CLI            │
+│  STAGE 1: Repository Analysis                           │
+│  Model: Claude (Analyst Role) - via Claude Code CLI     │
 │     ├─ Generate repo analysis prompt                    │
 │     ├─ You paste into Claude Code CLI                   │
 │     └─ You save response                                │
 │                                                          │
-│  2. CLAUDE (Planner) - via Claude Code CLI              │
+│  STAGE 2: Task Planning                                 │
+│  Model: Claude (Planner Role) - via Claude Code CLI     │
 │     ├─ Generate task planning prompt                    │
 │     ├─ You paste into Claude Code CLI                   │
 │     └─ You save YAML spec                               │
 │                                                          │
-│  3. CODEX (Implementation) - Use Cursor/Copilot/IDE     │
+│  STAGE 3: Code Implementation                           │
+│  Model: Codex/Cursor (Implementation Role)              │
 │     ├─ Generate implementation prompt                   │
 │     ├─ You paste into your AI IDE                       │
 │     └─ You implement & save code                        │
 │                                                          │
-│  4. GEMINI (Verification) - via web [OPTIONAL]          │
+│  STAGE 4: Verification [OPTIONAL]                       │
+│  Model: Gemini (Verification Role) - via web            │
 │     ├─ Generate verification prompt                     │
 │     ├─ You paste into Gemini web                        │
 │     └─ You save JSON findings                           │
 │                                                          │
-│  5. CLAUDE (Decision) - via Claude Code CLI             │
+│  STAGE 5: Integration Decision                          │
+│  Model: Claude (Decision-Maker Role) - via Claude CLI   │
 │     ├─ Generate integration decision prompt             │
 │     ├─ You paste into Claude Code CLI                   │
 │     └─ You save APPROVE/REJECT decision                 │
@@ -611,7 +619,15 @@ Designed for teams who value:
 
 > "The best AI coding tools don't replace human judgment—they enhance it."
 
-Agentic Code is built on the principle that **AI should augment, not replace, human developers**. By making every step transparent and requiring human approval, we:
+Agentic Code is built on the principle that **AI should augment, not replace, human developers**. Our architecture emphasizes **governance through separation of duties** rather than emergent multi-agent behavior.
+
+**Key Design Principles:**
+- **Sequential multi-model pipeline** - Different models handle different roles
+- **Human-in-the-loop governance** - Not autonomous agent interactions
+- **Transparency over emergence** - Predictable, auditable workflows
+- **Separation of duties** - No model reviews its own work
+
+By making every step transparent and requiring human approval, we:
 
 - ✅ Build trust in AI-generated code
 - ✅ Catch issues before they become problems
@@ -619,6 +635,8 @@ Agentic Code is built on the principle that **AI should augment, not replace, hu
 - ✅ Maintain full control and accountability
 - ✅ Create audit trails for compliance
 - ✅ **Do it all with subscription-based tools** (no pay-per-use charges)
+
+**Note**: While inspired by multi-agent concepts, this implementation prioritizes practical governance over theoretical multi-agent architectures (e.g., Minsky's Society of Mind). See [ARCHITECTURE.md](ARCHITECTURE.md) for details.
 
 ---
 
@@ -632,7 +650,7 @@ pip install -e .
 agentic-code run examples/simple-function.md --skip-verification
 
 # Learn
-# Each prompt teaches you what that agent does
+# Each prompt teaches you what that model/stage does
 # Each response shows you how AI thinks
 # Complete transparency, subscription-based model
 ```

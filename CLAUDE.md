@@ -4,9 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Agentic Code is a **prompt-based orchestrator** for governed multi-agent coding workflows. Unlike traditional AI coding tools that make API calls, this tool generates prompts that users paste into accessible AI tools (Claude Code CLI, Cursor, Gemini) with full human-in-the-loop supervision.
+Agentic Code is a **prompt-based orchestrator** for governed multi-model coding workflows with separation of duties. Unlike traditional AI coding tools that make API calls, this tool generates prompts that users paste into accessible AI tools (Claude Code CLI, Cursor, Gemini) with full human-in-the-loop supervision.
 
 **Core Philosophy**: Subscription-based tools (no pay-per-use), complete transparency, separation of duties, and human approval at every step.
+
+**Architectural Note**: This is a **sequential multi-model pipeline** with governance, not a concurrent multi-agent system. While we use specialized "agents" (Claude, Codex, Gemini) in our code, they represent different **model roles** in a pipeline, not autonomous agents with emergent behavior. See the Architecture Overview section below for details.
 
 ## Development Commands
 
@@ -44,15 +46,22 @@ pytest                     # Run tests
 
 ### Pipeline Flow (5-Stage Process)
 
-The tool orchestrates a governed multi-agent workflow through **prompt generation**, not API calls:
+The tool orchestrates a governed multi-model sequential workflow through **prompt generation**, not API calls. Each stage uses a different model for separation of duties:
 
-1. **Repository Analysis (Claude)** → Generates analysis prompt → User pastes into Claude Code CLI → User saves response
-2. **Task Planning (Claude)** → Generates planning prompt → User pastes into Claude Code CLI → User saves YAML spec
-3. **Code Implementation (Codex)** → Generates implementation prompt → User pastes into Cursor/IDE → User implements code
-4. **Verification (Gemini)** [Optional] → Generates verification prompt → User pastes into Gemini web → User saves JSON findings
-5. **Integration Decision (Claude)** → Generates decision prompt → User pastes into Claude Code CLI → User saves APPROVE/REJECT
+1. **Stage 1: Repository Analysis** (Model: Claude - Analyst Role) → Generates analysis prompt → User pastes into Claude Code CLI → User saves response
+2. **Stage 2: Task Planning** (Model: Claude - Planner Role) → Generates planning prompt → User pastes into Claude Code CLI → User saves YAML spec
+3. **Stage 3: Code Implementation** (Model: Codex - Implementation Role) → Generates implementation prompt → User pastes into Cursor/IDE → User implements code
+4. **Stage 4: Verification** [Optional] (Model: Gemini - Verification Role) → Generates verification prompt → User pastes into Gemini web → User saves JSON findings
+5. **Stage 5: Integration Decision** (Model: Claude - Decision-Maker Role) → Generates decision prompt → User pastes into Claude Code CLI → User saves APPROVE/REJECT
 
-**Key Principle**: Separation of duties - no agent reviews its own work. Claude plans and decides, Codex implements, Gemini verifies.
+**Key Principle**: Separation of duties - no model reviews its own work. Claude plans and decides, Codex implements, Gemini verifies. This is a **governance architecture**, not an emergent multi-agent system.
+
+**Important Distinction**:
+- ✅ This IS: A sequential multi-model pipeline with governance
+- ✅ This IS: Separation of duties between different AI models
+- ❌ This is NOT: A concurrent multi-agent system (e.g., Society of Mind)
+- ❌ This is NOT: Emergent behavior from agent interactions
+- ❌ This is NOT: Autonomous agents negotiating solutions
 
 ### Automation Mode (NEW!)
 

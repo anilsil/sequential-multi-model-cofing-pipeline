@@ -1,14 +1,18 @@
 """
 Pipeline orchestration for agentic-code (Prompt-Based).
 
-Coordinates the multi-agent workflow using prompt generation and human-in-the-loop:
-1. Claude analyzes (prompt → user pastes response)
-2. Claude plans (prompt → user pastes response)
-3. Codex implements (prompt → user implements)
-4. Gemini verifies (prompt → user pastes response) [OPTIONAL]
-5. Claude decides (prompt → user pastes response)
+Coordinates a sequential multi-model workflow with separation of duties using
+prompt generation and human-in-the-loop governance:
 
-All steps are human-supervised. Subscription-based tools (no pay-per-use charges).
+Stage 1: Repository Analysis (Model: Claude - Analyst Role)
+Stage 2: Task Planning (Model: Claude - Planner Role)
+Stage 3: Code Implementation (Model: Codex - Implementation Role)
+Stage 4: Verification [OPTIONAL] (Model: Gemini - Verification Role)
+Stage 5: Integration Decision (Model: Claude - Decision-Maker Role)
+
+Architecture: Sequential multi-model pipeline (NOT concurrent multi-agent system).
+Governance: Human approval required at each stage.
+Cost Model: Subscription-based tools (no pay-per-use charges).
 """
 
 import time
@@ -31,9 +35,15 @@ from .utils import (
 
 class AgenticPipeline:
     """
-    Orchestrates the governed multi-agent coding pipeline (prompt-based).
+    Orchestrates the governed multi-model sequential pipeline (prompt-based).
 
-    Subscription-based tools - generates prompts for user to paste into AI tools.
+    This is a sequential multi-model workflow with separation of duties, not a
+    concurrent multi-agent system. Each "agent" represents a different model
+    playing a specific role in the pipeline.
+
+    Architecture: Sequential stages with different models for governance.
+    Execution: Generates prompts for user to paste into AI tools.
+    Cost: Subscription-based tools (no pay-per-use charges).
     """
 
     def __init__(self, config: Config):
