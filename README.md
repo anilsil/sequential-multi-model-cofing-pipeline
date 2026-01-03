@@ -1,6 +1,6 @@
 # Agentic Code - Prompt Orchestrator
 
-**🆓 100% FREE - Local-first, governed multi-model agentic coding pipeline**
+**🆓 Local-first, governed multi-model agentic coding pipeline**
 
 A CLI tool that orchestrates governed, multi-agent coding workflows using **prompt generation** instead of API calls. Zero cost, maximum control.
 
